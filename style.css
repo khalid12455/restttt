@@ -1,0 +1,205 @@
+/* Universal settings */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: sans-serif;
+}
+
+/* Image Background */
+.image-background {
+    position: fixed;
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  
+}
+
+/* 1. AUTO-LAYOUT CONTAINER */
+/* Instead of absolute positioning everything, we use a flex column */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers everything horizontally */
+    justify-content: space-evenly; /* Spaces everything out automatically */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 2. AUTO-LOGO */
+.logo-circle {
+position: absolute;
+left: 10px;
+top: 10px;
+    width: 15vh; /* Size based on screen height */
+    height: 15vh;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    z-index: 20;
+}
+
+/* 3. AUTO-TITLE */
+.main-title {
+    color: #ffffff;
+    font-size: clamp(1.5rem, 5vw, 3rem); 
+    text-align: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+
+    /* ADD THESE TWO LINES */
+    min-width: 300px;  /* Adjust this to fit your longest sentence */
+    min-height: 80px;  /* Keeps the height from jumping up and down */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 4. AUTO-BUTTONS */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Keeps them stacked on the same X-position */
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.button-container a {
+    text-decoration: none;
+    display: block;
+    /* This makes them responsive */
+    width: 100%; 
+    max-width: 450px; /* On PC, they won't get wider than this */
+    min-width: 280px; /* On mobile, they won't get smaller than this */
+}
+
+.lang-select-btn {
+    width: 100%;         /* Fills the 450px width on PC */
+    height: 80px;        /* Consistent height for both */
+    
+    background-color: rgba(53, 140, 39, 0.8);
+    color: white;
+    border: 3px solid rgba(231, 18, 18, 0.8);
+    border-radius: 15px;
+    
+    font-size: clamp(1.2rem, 2vw, 1.8rem); /* Font grows slightly on PC */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.lang-select-btn:hover {
+    transform: scale(1.05); /* Adds a nice effect for PC users */
+}
+/* 5. AUTO-MAP */
+.map {
+
+position: relative;
+bottom: -35px;
+    width: 20%; /* On mobile, takes most of screen */
+    height: 20%;
+
+    border-radius: 20px;
+    border: 2px solid rgba(79, 238, 21, 0.5);
+    z-index: 10;
+    animation: neonPulse 2s infinite alternate;
+}
+
+@keyframes neonPulse {
+    from { box-shadow: 0 0 10px rgba(79, 238, 21, 0.2); }
+    to { box-shadow: 0 0 25px rgba(79, 238, 21, 0.7); }
+}
+
+
+
+@media (max-width: 480px) {
+    .logo-circle {
+        width: 15vh;
+        height: 15vh;
+    }
+
+    .main-title {
+    position: relative;
+    bottom: -80px;
+        font-size: clamp(1.5rem, 6vw, 4rem);
+        padding: 3vh 7vw;
+    }
+
+    .lang-select-btn {
+    position: relative;
+    bottom: -60px;
+        font-size: clamp(1.2rem, 5vw, 2.5rem);
+        padding: 20px 40px;
+
+    }
+
+    .map {
+        width: 50%;
+        height: auto;
+      
+    }
+}
+/* Specifically for the language selection screen in landscape */
+/* Only apply these rules to small devices (phones) in landscape */
+@media screen and (orientation: landscape) and (max-device-width: 932px) {
+    html, body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .image-background {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: row; /* Buttons side-by-side only on mobile landscape */
+        gap: 12px;
+        width: 90%;
+        max-width: 550px;
+        z-index: 10;
+    }
+
+    .button-container a {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .lang-select-btn {
+        height: 50px;
+        width: 100px;
+        margin: 10px;
+        font-size: 0.9rem;
+        border: 1px solid rgba(231, 18, 18, 0.8);
+        position: static;
+        bottom: 0;
+    }
+
+    /* Keep the map small so it doesn't crowd the screen */
+    .map {
+        width: 120px;
+        height: 60px;
+        position: static;
+        margin-top: 10px;
+    }
+}

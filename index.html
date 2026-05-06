@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Selection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Video Background -->
+   
+   <img src="./images/foul-w-hummus.webp" alt="" class="image-background">
+    <!-- Logo Section -->
+    <img src="images/WhatsApp Image 2026-05-03 at 8.51.13 PM.jpeg" alt="Logo" class="logo-circle">
+
+    <!-- Title Section -->
+    <h1 class="main-title" id="main-title">Welcome to Fuul Hummus</h1>
+
+    <!-- YOUR EXACT Centering Wrapper and Buttons -->
+    <div class="center-screen">
+        <div class="button-container">
+            <a href="lang/ar.html" onclick="setLang('ar')"><button class="lang-select-btn backColor"><b>العربية</b></button></a>
+            <a href="lang/eng.html" onclick="setLang('eng')"><button class="lang-select-btn backColor"><b>English</b></button></a>
+            <a href="lang/kurdi.html" onclick="setLang('kurdi')"><button class="lang-select-btn backColor"><b>کوردی</b></button></a>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51490.792198556!2d43.995224799999995!3d36.235254499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40071f639d941e99%3A0xfdb91f1ea369aa00!2zRnV1bCB3IEh1bW11cyDZgdmI2YQg2YjYrdmF2LU!5e0!3m2!1sen!2siq!4v1777824240760!5m2!1sen!2siq" allowfullscreen="" loading="lazy"></iframe>
+
+    <script>
+        // ADDED: This function saves the language before the link opens
+        function setLang(lang) {
+            localStorage.setItem('userLanguage', lang);
+        }
+
+    
+        const titleElement = document.getElementById('main-title');
+        const languages = ['Welcome to Fuul Hummus', 'هلاً بكم في فوول وحمص', 'بەخێربێن بۆ فوول و حومس'];
+        let currentIndex = 0; let isTyping = true; let charIndex = 0;
+
+        function typeWriter() {
+            const currentText = languages[currentIndex];
+            if (isTyping) {
+                titleElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentText.length) { isTyping = false; setTimeout(typeWriter, 2000); return; }
+            } else {
+                titleElement.textContent = currentText.substring(0, charIndex);
+                charIndex--;
+                if (charIndex < 0) { isTyping = true; currentIndex = (currentIndex + 1) % languages.length; setTimeout(typeWriter, 500); return; }
+            }
+            setTimeout(typeWriter, isTyping ? 100 : 50);
+        }
+        typeWriter();
+    </script>
+</body>
+</html>

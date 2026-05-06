@@ -1,0 +1,150 @@
+/* 1. Basic Setup */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Fallback */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. The Header Image (Logo/Banner) */
+.image {
+    width: 100%;
+    height: 35vh; /* Takes up top 35% of screen */
+    object-fit: cover;
+    display: block;
+    z-index: -1; /* Puts it behind everything else */
+}
+
+/* 3. The Centered Card Wrapper */
+.menu-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* Pulls the card UP over the image slightly */
+    margin-top: -40px; 
+}
+
+.menu-card {
+ background-color: white;
+    width: 600px;
+  
+    
+    /* ADD THIS LINE RIGHT HERE */
+    border: 1px solid #d1d1d1; 
+    
+    border-radius: 40px 40px 0 0; 
+    padding: 25px;
+    box-shadow: 0px -10px 25px rgba(0,0,0,0.1);
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* 4. Text Styling */
+.menu-title {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.address {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+
+.pill-btn {
+    border: 1px solid #333;
+    background: white;
+    border-radius: 50px;
+    padding: 10px 22px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.pill-btn.active {
+    background: #333;
+    color: white;
+}
+
+/* 6. Large Menu Item Cards */
+.menu-item {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #eee; /* Fallback for missing images */
+   border: 2px solid rgba(0,0,0,0.1);
+   z-index: 1;
+}
+
+.menu-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-overlay {
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(5, 5, 5, 0.327); /* Transparent dark layer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-overlay h2 {
+    color: white;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    margin: 0;
+}
+
+
+/* Add this to your CSS */
+.lang-switch-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+}
+
+.lang-switch-container button {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #333;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.lang-switch-container button:hover {
+    background: #333;
+    color: white;
+}
+
+a{
+text-decoration: none;
+
+}
+
+
+.item-price{
+position: relative;
+display: flex;
+text-align: end;
+color: green;
+justify-content: space-between;
+top: -20px;
+}

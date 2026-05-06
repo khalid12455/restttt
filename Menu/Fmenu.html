@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../diffr.rest/diffr.css">
+    <link rel="stylesheet" href="menu.css">
+
+    <style>
+        /* This prevents the "flash" of original text */
+        .loading-lang [data-key] {
+            visibility: hidden;
+        }
+    </style>
+
+    <script>
+        // Translations for menu items
+        const translations = {
+            ar: {
+
+                falafl_name: "فلافل",
+                falafl_price: "IQD 1000",
+
+            },
+            eng: {
+
+                falafl_name: "Falafel",
+                falafl_price: "IQD 1000",
+
+            },
+            kurdi: {
+
+                falafl_name: "فلافل",
+                falafl_price: "IQD 1000",
+
+            }
+        };
+
+        // Function to apply language
+        function applyLanguage() {
+            const lang = localStorage.getItem('userLanguage') || 'ar';
+
+            // Set Direction immediately
+            document.documentElement.dir = (lang === 'ar' || lang === 'kurdi') ? 'rtl' : 'ltr';
+
+            // Add a class to hide elements until we translate them
+            document.documentElement.classList.add('loading-lang');
+
+            // Wait for the elements to exist in the DOM
+            document.addEventListener("DOMContentLoaded", function () {
+                const elements = document.querySelectorAll('[data-key]');
+                elements.forEach(el => {
+                    const key = el.getAttribute('data-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerText = translations[lang][key];
+                    }
+                });
+                // Reveal everything now that it's translated
+                document.documentElement.classList.remove('loading-lang');
+            });
+        }
+
+        applyLanguage();
+    </script>
+</head>
+
+<body>
+
+    <img src="../images/foul-w-hummus.webp" alt="WW Logo" class="image">
+
+
+
+
+    <div class="menu-wrapper">
+        <div class="menu-card">
+            <!-- Notice we keep the keys, but the JS handles the rest -->
+
+
+
+            <div class="menu-item">
+                <img src="../images/foul-w-hummus.webp" alt="Fuul" class="item-img">
+
+            </div>
+
+
+            <div class="item-price">
+                <p><b data-key="falafl_name"></b></p>
+                <p data-key="falafl_price"></p>
+            </div>
+
+            <br> <br> <br> <br>
+
+            <div class="menu-item">
+                <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
+
+            </div>
+
+            <div class="item-price">
+                <p><b data-key="falafl_name"></b></p>
+                <p data-key="falafl_price"></p>
+            </div>
+
+            <br> <br> <br> <br>
+
+
+            <div class="menu-item">
+                <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
+
+            </div>
+
+            <div class="item-price">
+                <p><b data-key="falafl_name"></b></p>
+                <p data-key="falafl_price"></p>
+            </div>
+
+            <br> <br> <br> <br>
+            <div class="menu-item">
+                <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
+
+            </div>
+            <div class="item-price">
+                <p><b data-key="falafl_name"></b></p>
+                <p data-key="falafl_price"></p>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+</body>
+
+</html>

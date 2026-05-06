@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="diffr.css">
+    <title>Fuul Hummus Menu</title>
+
+    <style>
+        /* This prevents the "flash" of original text */
+        .loading-lang [data-key] {
+            visibility: hidden;
+        }
+    </style>
+
+    <script>
+        // 1. Move translations to the top
+        const translations = {
+            ar: {
+                title: "فول وحمص - القائمة",
+                address: "📍 أربيل، العراق",
+                fuul: "فول",
+                chicken: "دجاج",
+                  sharqi: "SHARQI",
+                xarbi: "XARBI"
+            },
+            eng: {
+                title: "Fuul & Hummus - Menu",
+                address: "📍 Erbil, Iraq",
+                fuul: "FUUL",
+                chicken: "CHICKEN",
+                sharqi: "SHARQI",
+                xarbi: "XARBI"
+            },
+            kurdi: {
+                title: "فول و حومس - لیست",
+                address: "📍 هەولێر، عێراق",
+                fuul: "فول",
+                chicken: "مريشک",
+                  sharqi: "SHARQI",
+                xarbi: "XARBI",
+                  sharqi: "SHARQI",
+                xarbi: "XARBI"
+            }
+        };
+
+        // 2. This function runs IMMEDIATELY before the body even appears
+        function applyLanguage() {
+            const lang = localStorage.getItem('userLanguage') || 'ar';
+
+            // Set Direction immediately
+            document.documentElement.dir = (lang === 'ar' || lang === 'kurdi') ? 'rtl' : 'ltr';
+
+            // Add a class to hide elements until we translate them
+            document.documentElement.classList.add('loading-lang');
+
+            // Wait for the elements to exist in the DOM
+            document.addEventListener("DOMContentLoaded", function () {
+                const elements = document.querySelectorAll('[data-key]');
+                elements.forEach(el => {
+                    const key = el.getAttribute('data-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerText = translations[lang][key];
+                    }
+                });
+                // Reveal everything now that it's translated
+                document.documentElement.classList.remove('loading-lang');
+            });
+        }
+
+        applyLanguage();
+    </script>
+</head>
+
+<body>
+    <img src="../images/foul-w-hummus.webp" alt="WW Logo" class="image">
+    <a href="../Menu/Fmenu.html">
+        <div class="menu-wrapper">
+            <div class="menu-card">
+                <!-- Notice we keep the keys, but the JS handles the rest -->
+                <h1 class="menu-title" data-key="title"></h1>
+                <p class="address" data-key="address"></p>
+
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Fuul" class="item-img">
+                    <div class="item-overlay">
+                        <h2 data-key="fuul"></h2>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
+                    <div class="item-overlay">
+                        <h2 data-key="sharqi"></h2>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
+                    <div class="item-overlay">
+                        <h2 data-key="chicken"></h2>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
+                    <div class="item-overlay">
+                        <h2 data-key="xarbi"></h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </a>
+</body>
+
+</html>
