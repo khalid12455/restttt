@@ -1,20 +1,159 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ku" dir="rtl">
 <head>
-   
-    <title>Arabic Menu - Fuul Hummas</title>
-   <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../lang.css/style.lang.css">
+    <meta name="description" content="فول و حومس - لیست خواردن">
+    <title>فول و حومس</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <img src="../images/foul-w-hummus.webp" alt="Fuul Hummas Logo" class="image">
-  <div class="center-screen">
-        <div class="button-container">
-            <a href="../diffr.rest/fuul.html"><button class="lang-select-btn backColor"><b> فوول وحمص</b></button></a>
-            <a href="../diffr.rest/kahramana.html"><button class="lang-select-btn backColor"><b>مریشکی کەهرەمانە</b></button></a>
+    <!-- Header -->
+    <header class="site-header">
+        <a href="../index.html" class="nav-link">بگەڕێ بۆ ماڵەوە</a>
+        <h1 class="header-title" data-key="title">فول و حومس</h1>
+        <div class="language-switch">
+            <button class="language-switch-button" data-lang="ar">العربية</button>
+            <button class="language-switch-button" data-lang="eng">English</button>
+            <button class="language-switch-button active" data-lang="kurdi">کوردی</button>
+        </div>
+    </header>
 
-<h1></h1>
+    <!-- Main Content -->
+    <main>
+        <!-- Banner Image -->
+        <img src="../images/foul-w-hummus.webp" alt="فول و حومس" class="menu-banner">
 
+        <!-- Menu Card -->
+        <div class="menu-wrapper">
+            <div class="menu-card">
+                <h2 class="menu-title" data-key="title">فول و حومس - لیست</h2>
+                <p class="menu-address" data-key="address">📍 هەولێر، عێراق</p>
+
+                <!-- Fuul Item -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="فول" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="fuul">فول</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label">نرخ:</span>
+                    <span class="item-price-value">5,000 IQD</span>
+                </div>
+
+                <!-- Sharqi Item -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="شرقی" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="sharqi">شرقی</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label">نرخ:</span>
+                    <span class="item-price-value">6,500 IQD</span>
+                </div>
+
+                <!-- Chicken Item -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="مریشکی" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="chicken">مریشکی کەهرەمانە</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label">نرخ:</span>
+                    <span class="item-price-value">8,000 IQD</span>
+                </div>
+
+                <!-- Xarbi Item -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="غربی" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="xarbi">غربی</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label">نرخ:</span>
+                    <span class="item-price-value">6,500 IQD</span>
+                </div>
+
+                <!-- Navigation -->
+                <div class="nav-container">
+                    <a href="../index.html" class="nav-link">بگەڕێ بۆ ماڵەوە</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Translations
+        const translations = {
+            ar: {
+                title: "فول وحمص - القائمة",
+                address: "📍 أربيل، العراق",
+                fuul: "فول",
+                chicken: "دجاج كهرمانة",
+                sharqi: "شرقي",
+                xarbi: "غربي"
+            },
+            eng: {
+                title: "Fuul & Hummus - Menu",
+                address: "📍 Erbil, Iraq",
+                fuul: "FUUL",
+                chicken: "CHICKEN KAHRAMANA",
+                sharqi: "SHARQI",
+                xarbi: "XARBI"
+            },
+            kurdi: {
+                title: "فول و حومس - لیست",
+                address: "📍 هەولێر، عێراق",
+                fuul: "فول",
+                chicken: "مریشکی کەهرەمانە",
+                sharqi: "شرقی",
+                xarbi: "غربی"
+            }
+        };
+
+        // Apply Language
+        function applyLanguage(lang) {
+            const isRTL = (lang === 'ar' || lang === 'kurdi');
+            document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+
+            localStorage.setItem('userLanguage', lang);
+        }
+
+        // Initialize Language
+        const savedLang = localStorage.getItem('userLanguage') || 'kurdi';
+        applyLanguage(savedLang);
+
+        // Language Switch Buttons
+        document.querySelectorAll('.language-switch-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                
+                // Update active button
+                document.querySelectorAll('.language-switch-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                applyLanguage(lang);
+            });
+
+            // Mark current language as active
+            if (button.getAttribute('data-lang') === savedLang) {
+                button.classList.add('active');
+            }
+        });
+    </script>
 </body>
 </html>
