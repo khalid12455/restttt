@@ -1,124 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="diffr.css">
-    <title>Fuul Hummus Menu</title>
+    <meta name="description" content="Fuul - Traditional Dish Menu">
+    <title>Fuul Menu</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <a href="../index.html" class="nav-link" data-key="back-home">Back Home</a>
+        <h1 class="header-title" data-key="dish-name">Fuul</h1>
+        <div class="language-switch">
+            <button class="language-switch-button" data-lang="ar">العربية</button>
+            <button class="language-switch-button active" data-lang="eng">English</button>
+            <button class="language-switch-button" data-lang="kurdi">کوردی</button>
+        </div>
+    </header>
 
-    <style>
-        /* This prevents the "flash" of original text */
-        .loading-lang [data-key] {
-            visibility: hidden;
-        }
-    </style>
+    <!-- Main Content -->
+    <main>
+        <!-- Banner Image -->
+        <img src="../images/foul-w-hummus.webp" alt="Fuul Dish" class="menu-banner">
+
+        <!-- Menu Card -->
+        <div class="menu-wrapper">
+            <div class="menu-card">
+                <h2 class="menu-title" data-key="dish-name">Fuul</h2>
+                <p class="menu-address" data-key="dish-description">Traditional Iraqi fava bean dish</p>
+
+                <!-- Preparation 1 -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Fuul Classic" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="prep-classic">Classic Fuul</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label" data-key="price-label">Price:</span>
+                    <span class="item-price-value">5,000 IQD</span>
+                </div>
+
+                <!-- Preparation 2 -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Fuul with Egg" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="prep-egg">Fuul with Egg</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label" data-key="price-label">Price:</span>
+                    <span class="item-price-value">5,500 IQD</span>
+                </div>
+
+                <!-- Preparation 3 -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Fuul with Meat" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="prep-meat">Fuul with Meat</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label" data-key="price-label">Price:</span>
+                    <span class="item-price-value">6,500 IQD</span>
+                </div>
+
+                <!-- Preparation 4 -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Fuul Deluxe" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="prep-deluxe">Fuul Deluxe</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label" data-key="price-label">Price:</span>
+                    <span class="item-price-value">7,500 IQD</span>
+                </div>
+
+                <!-- Navigation -->
+                <div class="nav-container">
+                    <a href="../lang/eng.html" class="nav-link" data-key="back-menu">Back to Menu</a>
+                    <a href="../index.html" class="nav-link" data-key="back-home">Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script>
-        // 1. Move translations to the top
+        // Translations
         const translations = {
             ar: {
-                title: "فول وحمص - القائمة",
-                address: "📍 أربيل، العراق",
-                fuul: "فول",
-                chicken: "دجاج",
-                  sharqi: "SHARQI",
-                xarbi: "XARBI"
+                'back-home': 'العودة للرئيسية',
+                'back-menu': 'العودة للقائمة',
+                'dish-name': 'فول',
+                'dish-description': 'طبق عراقي تقليدي من الفول',
+                'prep-classic': 'فول كلاسيكي',
+                'prep-egg': 'فول مع بيض',
+                'prep-meat': 'فول مع لحم',
+                'prep-deluxe': 'فول ديلوكس',
+                'price-label': 'السعر:'
             },
             eng: {
-                title: "Fuul & Hummus - Menu",
-                address: "📍 Erbil, Iraq",
-                fuul: "FUUL",
-                chicken: "CHICKEN",
-                sharqi: "SHARQI",
-                xarbi: "XARBI"
+                'back-home': 'Back Home',
+                'back-menu': 'Back to Menu',
+                'dish-name': 'Fuul',
+                'dish-description': 'Traditional Iraqi fava bean dish',
+                'prep-classic': 'Classic Fuul',
+                'prep-egg': 'Fuul with Egg',
+                'prep-meat': 'Fuul with Meat',
+                'prep-deluxe': 'Fuul Deluxe',
+                'price-label': 'Price:'
             },
             kurdi: {
-                title: "فول و حومس - لیست",
-                address: "📍 هەولێر، عێراق",
-                fuul: "فول",
-                chicken: "مريشک",
-                  sharqi: "SHARQI",
-                xarbi: "XARBI",
-                  sharqi: "SHARQI",
-                xarbi: "XARBI"
+                'back-home': 'بگەڕێ بۆ ماڵەوە',
+                'back-menu': 'بگەڕێ بۆ لیست',
+                'dish-name': 'فول',
+                'dish-description': 'پێغەی عێراقی ڕێز',
+                'prep-classic': 'فول کلاسیکی',
+                'prep-egg': 'فول بە خۆرۆکی',
+                'prep-meat': 'فول بە گۆشت',
+                'prep-deluxe': 'فول دیلوکس',
+                'price-label': 'نرخ:'
             }
         };
 
-        // 2. This function runs IMMEDIATELY before the body even appears
-        function applyLanguage() {
-            const lang = localStorage.getItem('userLanguage') || 'ar';
+        // Apply Language
+        function applyLanguage(lang) {
+            const isRTL = (lang === 'ar' || lang === 'kurdi');
+            document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
 
-            // Set Direction immediately
-            document.documentElement.dir = (lang === 'ar' || lang === 'kurdi') ? 'rtl' : 'ltr';
-
-            // Add a class to hide elements until we translate them
-            document.documentElement.classList.add('loading-lang');
-
-            // Wait for the elements to exist in the DOM
-            document.addEventListener("DOMContentLoaded", function () {
-                const elements = document.querySelectorAll('[data-key]');
-                elements.forEach(el => {
-                    const key = el.getAttribute('data-key');
-                    if (translations[lang] && translations[lang][key]) {
-                        el.innerText = translations[lang][key];
-                    }
-                });
-                // Reveal everything now that it's translated
-                document.documentElement.classList.remove('loading-lang');
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
             });
+
+            localStorage.setItem('userLanguage', lang);
         }
 
-        applyLanguage();
+        // Initialize Language
+        const savedLang = localStorage.getItem('userLanguage') || 'eng';
+        applyLanguage(savedLang);
+
+        // Language Switch Buttons
+        document.querySelectorAll('.language-switch-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                
+                document.querySelectorAll('.language-switch-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                applyLanguage(lang);
+            });
+
+            if (button.getAttribute('data-lang') === savedLang) {
+                button.classList.add('active');
+            }
+        });
     </script>
-</head>
-
-<body>
-    <img src="../images/foul-w-hummus.webp" alt="WW Logo" class="image">
-   
-    
-        <div class="menu-wrapper">
-       
-            <div class="menu-card">
-              <h1 class="menu-title" data-key="title"></h1>
-                <p class="address" data-key="address"></p>
-
-              <a href="../Menu/Fmenu.html">
-                <!-- Notice we keep the keys, but the JS handles the rest -->
-            
-
-                <div class="menu-item">
-                    <img src="../images/foul-w-hummus.webp" alt="Fuul" class="item-img">
-                    <div class="item-overlay">
-                        <h2 data-key="fuul"></h2>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
-                    <div class="item-overlay">
-                        <h2 data-key="sharqi"></h2>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
-                    <div class="item-overlay">
-                        <h2 data-key="chicken"></h2>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
-                    <div class="item-overlay">
-                        <h2 data-key="xarbi"></h2>
-                    </div>
-                </div>
-  </a>
-            </div>
-             
-        </div>
-    
 </body>
-
 </html>

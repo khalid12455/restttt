@@ -1,20 +1,159 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en" dir="ltr">
 <head>
-   
-    <title>Arabic Menu - Fuul Hummas</title>
-   <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../lang.css/style.lang.css">
+    <meta name="description" content="Fuul & Hummus - Restaurant Menu">
+    <title>Fuul & Hummus</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <img src="../images/foul-w-hummus.webp" alt="Fuul Hummas Logo" class="image">
-  <div class="center-screen">
-        <div class="button-container">
-            <a href="../diffr.rest/fuul.html"><button class="lang-select-btn backColor"><b>Fuul Hummus</b></button></a>
-            <a href="../diffr.rest/kahramana.html"><button class="lang-select-btn backColor"><b>Chicken Kahramana</b></button></a>
+    <!-- Header -->
+    <header class="site-header">
+        <a href="../index.html" class="nav-link">Back to Home</a>
+        <h1 class="header-title" data-key="title">Fuul & Hummus</h1>
+        <div class="language-switch">
+            <button class="language-switch-button" data-lang="ar">العربية</button>
+            <button class="language-switch-button active" data-lang="eng">English</button>
+            <button class="language-switch-button" data-lang="kurdi">کوردی</button>
+        </div>
+    </header>
 
-<h1></h1>
+    <!-- Main Content -->
+    <main>
+        <!-- Banner Image -->
+        <img src="../images/foul-w-hummus.webp" alt="Fuul & Hummus" class="menu-banner">
 
+        <!-- Menu Card -->
+        <div class="menu-wrapper">
+            <div class="menu-card">
+                <h2 class="menu-title" data-key="title">Fuul & Hummus - Menu</h2>
+                <p class="menu-address" data-key="address">📍 Erbil, Iraq</p>
+
+                <!-- Fuul Item -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Fuul" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="fuul">FUUL</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label">Price:</span>
+                    <span class="item-price-value">5,000 IQD</span>
+                </div>
+
+                <!-- Sharqi Item -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Sharqi" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="sharqi">SHARQI</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label">Price:</span>
+                    <span class="item-price-value">6,500 IQD</span>
+                </div>
+
+                <!-- Chicken Item -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Chicken" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="chicken">CHICKEN KAHRAMANA</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label">Price:</span>
+                    <span class="item-price-value">8,000 IQD</span>
+                </div>
+
+                <!-- Xarbi Item -->
+                <div class="menu-item">
+                    <img src="../images/foul-w-hummus.webp" alt="Xarbi" class="item-img">
+                    <div class="item-overlay">
+                        <h3 data-key="xarbi">XARBI</h3>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <span class="item-price-label">Price:</span>
+                    <span class="item-price-value">6,500 IQD</span>
+                </div>
+
+                <!-- Navigation -->
+                <div class="nav-container">
+                    <a href="../index.html" class="nav-link">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Translations
+        const translations = {
+            ar: {
+                title: "فول وحمص - القائمة",
+                address: "📍 أربيل، العراق",
+                fuul: "فول",
+                chicken: "دجاج كهرمانة",
+                sharqi: "شرقي",
+                xarbi: "غربي"
+            },
+            eng: {
+                title: "Fuul & Hummus - Menu",
+                address: "📍 Erbil, Iraq",
+                fuul: "FUUL",
+                chicken: "CHICKEN KAHRAMANA",
+                sharqi: "SHARQI",
+                xarbi: "XARBI"
+            },
+            kurdi: {
+                title: "فول و حومس - لیست",
+                address: "📍 هەولێر، عێراق",
+                fuul: "فول",
+                chicken: "مریشکی کەهرەمانە",
+                sharqi: "شرقی",
+                xarbi: "غربی"
+            }
+        };
+
+        // Apply Language
+        function applyLanguage(lang) {
+            const isRTL = (lang === 'ar' || lang === 'kurdi');
+            document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+
+            localStorage.setItem('userLanguage', lang);
+        }
+
+        // Initialize Language
+        const savedLang = localStorage.getItem('userLanguage') || 'eng';
+        applyLanguage(savedLang);
+
+        // Language Switch Buttons
+        document.querySelectorAll('.language-switch-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                
+                // Update active button
+                document.querySelectorAll('.language-switch-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                applyLanguage(lang);
+            });
+
+            // Mark current language as active
+            if (button.getAttribute('data-lang') === savedLang) {
+                button.classList.add('active');
+            }
+        });
+    </script>
 </body>
 </html>

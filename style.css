@@ -1,205 +1,524 @@
-/* Universal settings */
-html, body {
+/* ============================================
+   FUUL & HUMMUS - UNIFIED STYLESHEET
+   Modern Restaurant Menu Site
+   ============================================ */
+
+/* 1. RESET & BASE STYLES */
+* {
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    font-family: sans-serif;
-}
-
-/* Image Background */
-.image-background {
-    position: fixed;
-    width:100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  
-}
-
-/* 1. AUTO-LAYOUT CONTAINER */
-/* Instead of absolute positioning everything, we use a flex column */
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers everything horizontally */
-    justify-content: space-evenly; /* Spaces everything out automatically */
-    padding: 20px;
     box-sizing: border-box;
 }
 
-/* 2. AUTO-LOGO */
-.logo-circle {
-position: absolute;
-left: 10px;
-top: 10px;
-    width: 15vh; /* Size based on screen height */
-    height: 15vh;
-    max-width: 150px;
-    max-height: 150px;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2C2C2C;
+    background-color: #F8F8F8;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 2. COLOR VARIABLES & UTILITIES */
+:root {
+    --color-primary: #358C27;
+    --color-accent: #E71212;
+    --color-neon: #4FEE15;
+    --color-dark: #2C2C2C;
+    --color-light: #FFFFFF;
+    --color-bg: #F8F8F8;
+    --color-border: #E0E0E0;
+    --color-overlay: rgba(0, 0, 0, 0.3);
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 20px;
+    --spacing-xl: 24px;
+    --spacing-xxl: 32px;
+}
+
+/* 3. LANDING PAGE STYLES */
+
+/* Background Image */
+.page-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+/* Landing Page Container */
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--spacing-lg);
+    gap: var(--spacing-xxl);
+}
+
+/* Logo */
+.site-logo {
+    position: fixed;
+    top: var(--spacing-lg);
+    left: var(--spacing-lg);
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid rgba(255, 255, 255, 0.3);
     z-index: 20;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* 3. AUTO-TITLE */
-.main-title {
-    color: #ffffff;
-    font-size: clamp(1.5rem, 5vw, 3rem); 
+/* Page Title */
+.page-title {
+    color: var(--color-light);
+    font-size: clamp(1.8rem, 5vw, 3rem);
     text-align: center;
-    padding: 15px 30px;
+    padding: var(--spacing-lg) var(--spacing-xl);
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    z-index: 10;
-
-    /* ADD THESE TWO LINES */
-    min-width: 300px;  /* Adjust this to fit your longest sentence */
-    min-height: 80px;  /* Keeps the height from jumping up and down */
-    
+    min-width: 300px;
+    min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
 }
-/* 4. AUTO-BUTTONS */
-.button-container {
+
+/* Language Button Container */
+.language-button-group {
     display: flex;
-    flex-direction: column; /* Keeps them stacked on the same X-position */
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: var(--spacing-lg);
     width: 100%;
 }
 
-.button-container a {
-    text-decoration: none;
-    display: block;
-    /* This makes them responsive */
-    width: 100%; 
-    max-width: 450px; /* On PC, they won't get wider than this */
-    min-width: 280px; /* On mobile, they won't get smaller than this */
-}
-
-.lang-select-btn {
-    width: 100%;         /* Fills the 450px width on PC */
-    height: 80px;        /* Consistent height for both */
-    
+.language-selector-button {
+    width: 100%;
+    max-width: 450px;
+    min-width: 280px;
+    height: 80px;
     background-color: rgba(53, 140, 39, 0.8);
-    color: white;
+    color: var(--color-light);
     border: 3px solid rgba(231, 18, 18, 0.8);
     border-radius: 15px;
-    
-    font-size: clamp(1.2rem, 2vw, 1.8rem); /* Font grows slightly on PC */
-    
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease;
 }
 
-.lang-select-btn:hover {
-    transform: scale(1.05); /* Adds a nice effect for PC users */
+.language-selector-button:hover {
+    transform: scale(1.05);
 }
-/* 5. AUTO-MAP */
-.map {
 
-position: relative;
-bottom: -35px;
-    width: 20%; /* On mobile, takes most of screen */
-    height: 20%;
-
+/* Map Container */
+.map-container {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 16 / 9;
     border-radius: 20px;
     border: 2px solid rgba(79, 238, 21, 0.5);
+    overflow: hidden;
     z-index: 10;
-    animation: neonPulse 2s infinite alternate;
+    animation: neon-pulse 2s infinite alternate;
 }
 
-@keyframes neonPulse {
-    from { box-shadow: 0 0 10px rgba(79, 238, 21, 0.2); }
-    to { box-shadow: 0 0 25px rgba(79, 238, 21, 0.7); }
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
+/* 4. HEADER STYLES */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background-color: var(--color-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 15;
+}
 
+.header-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-primary);
+}
 
-@media (max-width: 480px) {
-    .logo-circle {
-        width: 15vh;
-        height: 15vh;
-    }
+.header-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    flex: 1;
+    margin-left: var(--spacing-lg);
+}
 
-    .main-title {
+.language-switch {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.language-switch-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-bg);
+    border: 2px solid var(--color-primary);
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+}
+
+.language-switch-button.active {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+}
+
+.language-switch-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+}
+
+/* 5. MENU PAGE STYLES */
+
+/* Banner Image */
+.menu-banner {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    display: block;
+}
+
+/* Menu Wrapper */
+.menu-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: -50px;
+    padding: 0 var(--spacing-md);
+}
+
+/* Menu Card */
+.menu-card {
+    background-color: var(--color-light);
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid var(--color-border);
+    border-radius: 40px 40px 0 0;
+    padding: var(--spacing-xl);
+    box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+}
+
+/* Menu Title */
+.menu-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-dark);
+}
+
+/* Address */
+.menu-address {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Menu Item */
+.menu-item {
     position: relative;
-    bottom: -80px;
-        font-size: clamp(1.5rem, 6vw, 4rem);
-        padding: 3vh 7vw;
+    width: 100%;
+    height: 200px;
+    margin-bottom: var(--spacing-xl);
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #EEE;
+    border: 2px solid var(--color-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Item Overlay */
+.item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-overlay);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.menu-item:hover .item-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.item-overlay h2 {
+    color: var(--color-light);
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    text-align: center;
+}
+
+/* Item Price */
+.item-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-sm);
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.item-price-label {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.item-price-value {
+    font-size: 1.2rem;
+}
+
+/* 6. NAVIGATION STYLES */
+
+.nav-link {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    border-radius: 15px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--color-accent);
+    transform: scale(1.05);
+}
+
+.nav-container {
+    padding: var(--spacing-xl);
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--spacing-xl);
+}
+
+.nav-container a {
+    margin: 0 var(--spacing-md);
+}
+
+/* 7. ANIMATIONS */
+
+@keyframes neon-pulse {
+    from {
+        box-shadow: 0 0 10px rgba(79, 238, 21, 0.2);
     }
-
-    .lang-select-btn {
-    position: relative;
-    bottom: -60px;
-        font-size: clamp(1.2rem, 5vw, 2.5rem);
-        padding: 20px 40px;
-
-    }
-
-    .map {
-        width: 50%;
-        height: auto;
-      
+    to {
+        box-shadow: 0 0 25px rgba(79, 238, 21, 0.7);
     }
 }
-/* Specifically for the language selection screen in landscape */
-/* Only apply these rules to small devices (phones) in landscape */
-@media screen and (orientation: landscape) and (max-device-width: 932px) {
-    html, body {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.menu-card {
+    animation: slide-up 0.5s ease-out;
+}
+
+/* 8. RESPONSIVE DESIGN */
+
+/* Mobile: < 640px */
+@media (max-width: 639px) {
+    .landing-container {
+        gap: var(--spacing-xl);
+        padding-top: 120px;
     }
 
-    .image-background {
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
+    .site-logo {
+        width: 80px;
+        height: 80px;
     }
 
-    .button-container {
-        display: flex;
-        flex-direction: row; /* Buttons side-by-side only on mobile landscape */
-        gap: 12px;
-        width: 90%;
+    .page-title {
+        font-size: 1.5rem;
+        min-width: 280px;
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .language-selector-button {
+        height: 70px;
+        font-size: 1.1rem;
+    }
+
+    .map-container {
+        height: 250px;
+    }
+
+    .menu-wrapper {
+        padding: 0 var(--spacing-sm);
+        margin-top: -40px;
+    }
+
+    .menu-card {
+        padding: var(--spacing-lg);
+        border-radius: 30px 30px 0 0;
+    }
+
+    .menu-title {
+        font-size: 1.4rem;
+    }
+
+    .item-overlay h2 {
+        font-size: 1.5rem;
+    }
+
+    .menu-item {
+        height: 160px;
+        margin-bottom: var(--spacing-lg);
+    }
+}
+
+/* Tablet: 640px - 1024px */
+@media (min-width: 640px) and (max-width: 1024px) {
+    .landing-container {
+        gap: var(--spacing-xl);
+    }
+
+    .site-logo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .menu-card {
         max-width: 550px;
-        z-index: 10;
+    }
+}
+
+/* Desktop: > 1024px */
+@media (min-width: 1025px) {
+    .landing-container {
+        gap: 40px;
     }
 
-    .button-container a {
-        flex: 1;
-        min-width: 0;
+    .menu-card {
+        max-width: 600px;
+    }
+}
+
+/* Landscape orientation on mobile devices */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .landing-container {
+        gap: var(--spacing-lg);
     }
 
-    .lang-select-btn {
-        height: 50px;
-        width: 100px;
-        margin: 10px;
-        font-size: 0.9rem;
-        border: 1px solid rgba(231, 18, 18, 0.8);
-        position: static;
-        bottom: 0;
-    }
-
-    /* Keep the map small so it doesn't crowd the screen */
-    .map {
-        width: 120px;
+    .site-logo {
+        width: 60px;
         height: 60px;
-        position: static;
-        margin-top: 10px;
+        top: var(--spacing-sm);
+        left: var(--spacing-sm);
     }
+
+    .page-title {
+        font-size: 1.3rem;
+        padding: var(--spacing-sm) var(--spacing-md);
+        min-height: auto;
+    }
+
+    .language-button-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+
+    .language-selector-button {
+        max-width: 150px;
+        height: 50px;
+        font-size: 0.9rem;
+    }
+
+    .map-container {
+        max-width: 300px;
+        height: 200px;
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .header-title {
+    margin-left: 0;
+    margin-right: var(--spacing-lg);
+}
+
+[dir="rtl"] .site-logo {
+    right: var(--spacing-lg);
+    left: auto;
 }
